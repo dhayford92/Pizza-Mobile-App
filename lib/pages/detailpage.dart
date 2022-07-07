@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:restuarant_app/components.dart';
 import 'package:restuarant_app/widgets/buttons.dart';
 
+import '../orders/cartModel.dart';
 import '../products/prodModel.dart';
 
 class ProductDetailPage extends StatefulWidget {
@@ -173,7 +174,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       height: 60,
                       child: CustomButton(
                         title: 'Add To Cart',
-                        onClick: () {},
+                        onClick: () {
+                          setState(() {
+                            cartlist.add(CartItem(
+                                id: 0,
+                                quantity: quantity,
+                                product: widget.product,
+                                total: widget.product.price! * quantity));
+                          });
+                        },
                       ),
                     )
                   ],

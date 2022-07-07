@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:restuarant_app/components.dart';
+import 'package:restuarant_app/pages/cartpage.dart';
 
 class CustomButton extends StatefulWidget {
   final String title;
@@ -43,6 +44,11 @@ class _CustomButtonState extends State<CustomButton> {
   }
 }
 
+/*
+
+  home button
+
+*/
 class HomeCartButton extends StatefulWidget {
   const HomeCartButton({Key? key}) : super(key: key);
 
@@ -56,7 +62,13 @@ class _HomeCartButtonState extends State<HomeCartButton> {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const CartPage(),
+            ),
+          );
+        },
         child: SizedBox(
           height: 70,
           child: Padding(
@@ -98,6 +110,11 @@ class _HomeCartButtonState extends State<HomeCartButton> {
   }
 }
 
+/*
+
+  quantity
+
+*/
 class QuantityCardButton extends StatefulWidget {
   int value;
   QuantityCardButton({Key? key, required this.value}) : super(key: key);
@@ -142,6 +159,59 @@ class _QuantityCardButtonState extends State<QuantityCardButton> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+/*
+
+  order button
+
+*/
+class OrderButton extends StatefulWidget {
+  const OrderButton({Key? key}) : super(key: key);
+
+  @override
+  State<OrderButton> createState() => _OrderButtonState();
+}
+
+class _OrderButtonState extends State<OrderButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 30, right: 30),
+      child: ElevatedButton(
+        onPressed: () {
+        },
+        child: SizedBox(
+          height: 70,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(Icons.credit_card, size: 30, color: Colors.white),
+                Text(
+                  'Pay',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.6),
+                )
+              ],
+            ),
+          ),
+        ),
+        style: ButtonStyle(
+          elevation: MaterialStateProperty.all(8),
+          backgroundColor: MaterialStateProperty.all(Colors.black),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(defaultPadding),
+            ),
+          ),
+        ),
       ),
     );
   }
